@@ -1,7 +1,6 @@
-/** Node: node for a queue. */
-
 const LinkedList = require("./linked-list");
 
+/** Node: node for a queue. */
 class Node {
   val = null;
   next = null;
@@ -45,19 +44,25 @@ class Queue {
    * and return its value. Should throw an error if the queue is empty. */
 
   dequeue() {
+    if (this.size === 0) {
+      throw new Error("Queue is empty");
+    }
 
+    const removedVal = this._linkedList.shift();
+    this.updateQueue();
+    return removedVal;
   }
 
   /** peek(): return the value of the first node in the queue. */
 
   peek() {
-
+    return this.first.val;
   }
 
   /** isEmpty(): return true if the queue is empty, otherwise false */
 
   isEmpty() {
-
+    return this.size === 0;
   }
 }
 
