@@ -65,7 +65,7 @@ class LinkedList {
   /** pop(): return & remove last item. */
 
   pop() {
-    // empty list 
+    // empty list
     if (this.head === null) {
       return null;
     }
@@ -81,7 +81,7 @@ class LinkedList {
     }
 
     while (current.next !== this.tail) {
-      current = current.next;  
+      current = current.next;
     }
     const poppedOff = current.next.val;
     current.next = null;
@@ -93,7 +93,7 @@ class LinkedList {
   /** shift(): return & remove first item. */
 
   shift() {
-    // empty list 
+    // empty list
     if (this.head === null) {
       return null;
     }
@@ -188,16 +188,70 @@ class LinkedList {
     this.length += 1;
   }
 
-  /** removeAt(idx): return & remove item at idx, */
+  /** removeAt(idx): return val & remove item at idx, */
 
   removeAt(idx) {
-    
+
+    //empty list
+    if (this.head === null) {
+      return null;
+    }
+
+    let removedVal = undefined;
+
+    //case where only 1 item
+    if (this.length === 1) {
+      removedVal = this.head.val;
+      this.head = null;
+      this.tail = null;
+      this.length -= 1;
+
+      return removedVal;
+    }
+
+    // If idx is greater than length of list
+    if (idx > this.length) {
+      return null;
+    }
+
+    let targetNode = this.head;
+
+    for (let i = 0; i < idx - 1; i++) {
+      targetNode = targetNode.next;
+    }
+
+    if (targetNode === this.head) {
+      this.head = targetNode.next;
+    }
+
+    if (targetNode.next === this.tail) {
+      this.tail = targetNode;
+    }
+
+    removedVal = targetNode.next.val;
+    targetNode.next = targetNode.next.next;
+    this.length -= 1;
+
+    return removedVal;
   }
 
   /** average(): return an average of all values in the list */
 
   average() {
+    //empty list
+    if (this.length === 0) {
+      return 0;
+    }
 
+    let targetNode = this.head;
+    let averageVal = 0;
+
+    for (let i = 0; i < this.length; i++) {
+      averageVal += targetNode.val;
+      targetNode = targetNode.next;
+    }
+
+    return averageVal / this.length;
   }
 }
 
