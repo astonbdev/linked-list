@@ -32,14 +32,15 @@ class LinkedList {
       return;
     }
 
-    let current = this.head;
+    // let current = this.head;
 
-    //traverse
-    while (current.next !== null) {
-      current = current.next
-    }
+    // //traverse
+    // while (current.next !== null) {
+    //   current = current.next
+    // }
 
-    current.next = newNode;
+    // current.next = newNode;
+    this.tail.next = newNode;l
     this.tail = newNode;
     this.length += 1;
   }
