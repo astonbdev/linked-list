@@ -1,5 +1,7 @@
 /** Node: node for a queue. */
 
+const LinkedList = require("./linked-list");
+
 class Node {
   val = null;
   next = null;
@@ -17,10 +19,26 @@ class Queue {
   last = null;
   size = 0;
 
+  _linkedList = null;
+
+  constructor() {
+    this._linkedList = new LinkedList();
+    this.first = this._linkedList.head;
+    this.last = this._linkedList.tail;
+    this.size = this._linkedList.length;
+  }
+
+  updateQueue() {
+    this.first = this._linkedList.head;
+    this.last = this._linkedList.tail;
+    this.size = this._linkedList.length;
+  }
+
   /** enqueue(val): add new value to end of the queue. Returns undefined. */
 
   enqueue(val) {
-
+    this._linkedList.push(val);
+    this.updateQueue();
   }
 
   /** dequeue(): remove the node from the start of the queue
