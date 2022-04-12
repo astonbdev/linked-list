@@ -73,67 +73,79 @@ describe("pop", function () {
   });
 });
 
-// describe("shift", function () {
-//   it("removes node at start and decrements length", function () {
-//     let lst = new DoublyLinkedList([5, 10]);
+describe("shift", function () {
+  it("removes node at start and decrements length", function () {
+    let lst = new DoublyLinkedList([5, 10]);
 
-//     expect(lst.shift()).toBe(5);
-//     expect(lst.tail.val).toBe(10);
-//     expect(lst.length).toBe(1);
+    expect(lst.shift()).toBe(5);
+    expect(lst.tail.val).toBe(10);
+    expect(lst.tail.prev).toBe(null);
+    expect(lst.head.prev).toBe(null);
+    expect(lst.length).toBe(1);
 
-//     expect(lst.shift()).toBe(10);
-//     expect(lst.tail).toBe(null);
-//     expect(lst.head).toBe(null);
-//     expect(lst.length).toBe(0);
-//   });
-// });
+    expect(lst.shift()).toBe(10);
+    expect(lst.tail).toBe(null);
+    expect(lst.head).toBe(null);
+    expect(lst.length).toBe(0);
 
-// describe("getAt", function () {
-//   it("gets val at index", function () {
-//     let lst = new DoublyLinkedList([5, 10]);
+    let lst2 = new DoublyLinkedList([5, 10, 15]);
 
-//     expect(lst.getAt(0)).toBe(5);
-//     expect(lst.getAt(1)).toBe(10);
-//   });
-// });
+    expect(lst2.shift()).toBe(5);
+    expect(lst2.tail.prev.val).toBe(10);
+    expect(lst2.head.prev).toBe(null);
+  });
+});
 
-// describe("setAt", function () {
-//   it("sets val at index", function () {
-//     let lst = new DoublyLinkedList([5, 10]);
+describe("getAt", function () {
+  it("gets val at index", function () {
+    let lst = new DoublyLinkedList([5, 10]);
 
-//     expect(lst.setAt(0, 1));
-//     expect(lst.setAt(1, 2));
-//     expect(lst.head.val).toBe(1);
-//     expect(lst.head.next.val).toBe(2);
-//   });
-// });
+    expect(lst.getAt(0)).toBe(5);
+    expect(lst.getAt(1)).toBe(10);
+  });
+});
 
-// describe("insertAt", function () {
-//   it("inserts node and adjusts nearby nodes", function () {
-//     let lst = new DoublyLinkedList([5, 10, 15, 20]);
+describe("setAt", function () {
+  it("sets val at index", function () {
+    let lst = new DoublyLinkedList([5, 10]);
 
-//     lst.insertAt(2, 12);
-//     expect(lst.length).toBe(5);
-//     expect(lst.head.val).toBe(5);
-//     expect(lst.head.next.val).toBe(10);
-//     expect(lst.head.next.next.val).toBe(12);
-//     expect(lst.head.next.next.next.val).toBe(15);
-//     expect(lst.head.next.next.next.next.val).toBe(20);
+    expect(lst.setAt(0, 1));
+    expect(lst.setAt(1, 2));
+    expect(lst.head.val).toBe(1);
+    expect(lst.head.next.val).toBe(2);
+  });
+});
 
-//     lst.insertAt(5, 25);
-//     expect(lst.head.next.next.next.next.next.val).toBe(25);
-//     expect(lst.tail.val).toBe(25);
-//   });
+describe("insertAt", function () {
+  it("inserts node and adjusts nearby nodes", function () {
+    let lst = new DoublyLinkedList([5, 10, 15, 20]);
 
-//   it("inserts into empty list", function () {
-//     let lst = new DoublyLinkedList();
+    lst.insertAt(2, 12);
+    expect(lst.length).toBe(5);
+    expect(lst.head.val).toBe(5);
+    expect(lst.head.next.val).toBe(10);
+    expect(lst.head.next.prev.val).toBe(5);
+    expect(lst.head.next.next.val).toBe(12);
+    expect(lst.head.next.next.prev.val).toBe(10);
+    expect(lst.head.next.next.next.val).toBe(15);
+    expect(lst.head.next.next.next.prev.val).toBe(12);
+    expect(lst.head.next.next.next.next.val).toBe(20);
+    expect(lst.head.next.next.next.next.prev.val).toBe(15);
 
-//     lst.insertAt(0, 5);
-//     expect(lst.length).toBe(1);
-//     expect(lst.head.val).toBe(5);
-//     expect(lst.tail.val).toBe(5);
-//   });
-// });
+    lst.insertAt(5, 25);
+    expect(lst.head.next.next.next.next.next.val).toBe(25);
+    expect(lst.tail.val).toBe(25);
+  });
+
+  it("inserts into empty list", function () {
+    let lst = new DoublyLinkedList();
+
+    lst.insertAt(0, 5);
+    expect(lst.length).toBe(1);
+    expect(lst.head.val).toBe(5);
+    expect(lst.tail.val).toBe(5);
+  });
+});
 
 // describe("removeAt", function () {
 //   it("removes from 1-item list", function () {
